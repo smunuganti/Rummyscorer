@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0, viewport-fit=cover">
     
-    <!-- Deployment Meta Tags -->
+    <!-- App Meta Tags -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Rummy Scorer">
+    <meta name="apple-mobile-web-app-title" content="Rummy Scorer Diwali">
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="theme-color" content="#022c22">
+    <meta name="theme-color" content="#2b0404">
     
-    <!-- FIFA World Cup Icons -->
-    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23022c22%22/><text y=%22.9em%22 font-size=%2280%22 x=%2210%22>🏆</text></svg>">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚽</text></svg>">
+    <!-- Diwali Icons -->
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%232b0404%22/><text y=%22.9em%22 font-size=%2280%22 x=%2210%22>🪔</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🪔</text></svg>">
 
-    <title>Rummy Scorer - World Cup 2026 Edition</title>
+    <title>Rummy Scorer - Royal Diwali Edition</title>
     
     <!-- Core Frameworks -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -23,108 +23,139 @@
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     
-    <!-- Screenshot Library -->
+    <!-- Canvas Library for Screenshots & Fireworks -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <style>
-        /* WORLD CUP STADIUM ANIMATIONS */
-        @keyframes item-fall {
-            0% { transform: translateY(-20vh) rotate(0deg); opacity: 0; }
-            15% { opacity: var(--item-opacity); }
-            85% { opacity: var(--item-opacity); }
-            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        /* DIWALI FESTIVE ANIMATIONS & THEME STYLING */
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+
+        :root {
+            --font-serif: 'Cinzel', serif;
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
         }
-        @keyframes spotlight-pan {
-            0% { transform: rotate(-35deg) translateX(-20vw); }
-            50% { transform: rotate(35deg) translateX(20vw); }
-            100% { transform: rotate(-35deg) translateX(-20vw); }
+
+        @keyframes diya-flame-flicker {
+            0%, 100% { transform: scale(1) rotate(-1deg); filter: drop-shadow(0 0 12px rgba(251, 191, 36, 0.9)) drop-shadow(0 0 25px rgba(245, 158, 11, 0.7)); }
+            25% { transform: scale(1.08, 0.95) rotate(1deg); filter: drop-shadow(0 0 15px rgba(251, 191, 36, 1)) drop-shadow(0 0 35px rgba(239, 68, 68, 0.8)); }
+            50% { transform: scale(0.96, 1.06) rotate(-2deg); filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.8)) drop-shadow(0 0 20px rgba(251, 191, 36, 0.6)); }
+            75% { transform: scale(1.04, 1.02) rotate(2deg); filter: drop-shadow(0 0 18px rgba(251, 191, 36, 0.95)) drop-shadow(0 0 30px rgba(245, 158, 11, 0.75)); }
         }
-        @keyframes camera-flash {
-            0%, 93%, 100% { opacity: 0; }
-            94% { opacity: 0.6; }
-            95% { opacity: 0.1; }
-            96% { opacity: 0.55; }
-            97% { opacity: 0.05; }
+
+        @keyframes floating-petal {
+            0% { transform: translateY(-10vh) rotate(0deg) translateX(0px); opacity: 0; }
+            10% { opacity: var(--item-opacity); }
+            90% { opacity: var(--item-opacity); }
+            100% { transform: translateY(110vh) rotate(540deg) translateX(60px); opacity: 0; }
         }
-        @keyframes trophy-pulse {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(234, 179, 8, 0.4)); }
-            50% { transform: scale(1.06); filter: drop-shadow(0 0 35px rgba(234, 179, 8, 0.7)); }
+
+        @keyframes rangoli-spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
-        @keyframes stadium-aura {
-            0% { opacity: 0.15; transform: scale(1); filter: blur(55px); }
-            50% { opacity: 0.35; transform: scale(1.2); filter: blur(75px); }
-            100% { opacity: 0.15; transform: scale(1); filter: blur(55px); }
+
+        @keyframes soft-glow-pulse {
+            0%, 100% { opacity: 0.35; transform: scale(1); filter: blur(60px); }
+            50% { opacity: 0.65; transform: scale(1.15); filter: blur(80px); }
         }
-        @keyframes bg-shift {
+
+        @keyframes festive-bg-shift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        .animate-fall { 
-            animation: item-fall linear infinite; 
-            will-change: transform;
+        @keyframes gold-shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
         }
-        .animate-trophy { 
-            animation: trophy-pulse 4s ease-in-out infinite; 
-            will-change: transform;
+
+        .animate-flame {
+            animation: diya-flame-flicker 2.5s ease-in-out infinite;
+            transform-origin: bottom center;
+            will-change: transform, filter;
         }
-        .animate-flash { 
-            animation: camera-flash 10s infinite; 
-            will-change: opacity;
-        }
-        .animate-stadium-lights { 
-            animation: stadium-aura 8s ease-in-out infinite; 
+
+        .animate-petal {
+            animation: floating-petal linear infinite;
             will-change: transform, opacity;
         }
-        
-        .stadium-bg-dark {
-            background: linear-gradient(-45deg, #022c22, #044e3a, #064e3b, #111827, #022c22);
-            background-size: 400% 400%;
-            animation: bg-shift 15s ease infinite;
+
+        .animate-rangoli {
+            animation: rangoli-spin 90s linear infinite;
+            will-change: transform;
+        }
+
+        .animate-festive-glow {
+            animation: soft-glow-pulse 6s ease-in-out infinite;
+            will-change: transform, opacity;
+        }
+
+        /* Festive Background Themes */
+        .diwali-bg-dark {
+            background: linear-gradient(135deg, #1c0202, #3b070c, #4a0e17, #26050a, #1a0104);
+            background-size: 300% 300%;
+            animation: festive-bg-shift 20s ease infinite;
             will-change: background-position;
         }
 
-        .stadium-bg-light {
-            background: linear-gradient(-45deg, #f0fdf4, #dcfce7, #fef08a, #f0fdf4);
-            background-size: 400% 400%;
-            animation: bg-shift 15s ease infinite;
+        .diwali-bg-light {
+            background: linear-gradient(135deg, #fffbeb, #fef3c7, #fde68a, #fff7ed, #fffbeb);
+            background-size: 300% 300%;
+            animation: festive-bg-shift 20s ease infinite;
             will-change: background-position;
         }
+
+        /* Glassmorphism & Gold Effects */
+        .royal-glass-dark {
+            background: rgba(43, 4, 4, 0.65);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(245, 158, 11, 0.25);
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(254, 243, 199, 0.15);
+        }
+
+        .royal-glass-light {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(217, 119, 6, 0.25);
+            box-shadow: 0 10px 30px -5px rgba(180, 83, 9, 0.1), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+        }
+
+        .gold-shimmer-text {
+            background: linear-gradient(90deg, #f59e0b, #fef08a, #d97706, #fef08a, #f59e0b);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: gold-shimmer 4s linear infinite;
+        }
+
+        .font-serif-royal { font-family: var(--font-serif); }
+        .font-sans-royal { font-family: var(--font-sans); }
 
         ::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        
+
         body {
             overflow: hidden;
             -webkit-tap-highlight-color: transparent;
-            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            font-family: var(--font-sans);
             user-select: none;
             height: 100vh;
             width: 100vw;
-            background-color: #022c22;
+            background-color: #2b0404;
             transition: background-color 0.5s ease;
         }
-        
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
 
-        .btn-active:active { transform: scale(0.96); }
         input { user-select: text; }
-        
         .pt-safe { padding-top: env(safe-area-inset-top); }
         .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
 
-        .volt-text { color: #a3e635; text-shadow: 0 0 10px rgba(163, 230, 53, 0.4); }
-        .stadium-glow { text-shadow: 0 0 20px rgba(234, 179, 8, 0.5); }
-
-        /* Grey State Implementation */
+        /* Player Inactive & Eliminative Styles */
         .player-inactive {
-            filter: grayscale(1) !important;
-            opacity: 0.25 !important;
+            filter: grayscale(0.85) opacity(0.35) !important;
             pointer-events: none;
         }
         .total-inactive {
@@ -146,31 +177,38 @@
     </script>
 
     <script type="text/babel" data-presets="classic-react">
-        const { useState, useEffect, useRef, useMemo } = React;
+        const { useState, useEffect, useRef, useMemo, useCallback } = React;
 
+        // Custom High Quality Diwali SVG Icons
         const Icon = React.memo(({ name, size = 20, className = "" }) => {
             const icons = {
-                "soccer-ball": (
-                    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-                        <circle cx="12" cy="12" r="10" />
-                        <path d="m12 2-1.5 5h3L12 2Z" />
-                        <path d="M12 22l-1.5-5h3L12 22Z" />
-                        <path d="m2 12 5-1.5v3L2 12Z" />
-                        <path d="m22 12-5-1.5v3l5 1.5Z" />
-                        <path d="m12 7-4.5 3 1.5 4.5h6l1.5-4.5L12 7Z" />
+                "diya": (
+                    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
+                        {/* Diya Base */}
+                        <path d="M2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 11.5 21 11.5 20.5 12C18.5 14 15.5 15.5 12 15.5C8.5 15.5 5.5 14 3.5 12C3 11.5 2 11.5 2 12Z" fill="currentColor" opacity="0.9" />
+                        <path d="M3.5 12C5.5 14 8.5 15.5 12 15.5C15.5 15.5 18.5 14 20.5 12C21.5 11 20 9.5 18 10C15 10.8 13.5 11.5 12 11.5C10.5 11.5 9 10.8 6 10C4 9.5 2.5 11 3.5 12Z" fill="#F59E0B" />
+                        {/* Flame */}
+                        <path d="M12 1.5C12 1.5 14.5 5.5 14.5 7.5C14.5 8.88071 13.3807 10 12 10C10.6193 10 9.5 8.88071 9.5 7.5C9.5 5.5 12 1.5 12 1.5Z" fill="#FBBF24" />
+                        <path d="M12 4C12 4 13.2 6.5 13.2 7.7C13.2 8.4 12.6 9 12 9C11.4 9 10.8 8.4 10.8 7.7C10.8 6.5 12 4 12 4Z" fill="#EF4444" />
                     </svg>
                 ),
-                "trophy": (
-                    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
-                        <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
-                        <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
-                        <path d="M4 22h16" />
-                        <path d="M10 14.66V17c0 .55-.45 1-1 1H4v2h16v-2h-5c-.55 0-1-.45-1-1v-2.34" />
-                        <path d="M12 2a6 6 0 0 1 6 6v3.5c0 3.3-2.7 6-6 6s-6-2.7-6-6V8a6 6 0 0 1 6-6Z" />
+                "sparkles": (
+                    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                        <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+                        <path d="M5 3v4"/>
+                        <path d="M19 17v4"/>
+                        <path d="M3 5h4"/>
+                        <path d="M17 19h4"/>
+                    </svg>
+                ),
+                "crown": (
+                    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                        <path d="M11.562 3.266a.5.5 0 0 1 .876 0L15.3 8.87l5.487-2.351a.5.5 0 0 1 .678.586l-2.02 12.124A2 2 0 0 1 17.47 21H6.53a2 2 0 0 1-1.975-1.771L2.535 7.105a.5.5 0 0 1 .678-.586L8.7 8.87l2.862-5.604Z"/>
+                        <circle cx="12" cy="13" r="1.5" fill="currentColor"/>
                     </svg>
                 ),
                 "plus": (
-                    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
                         <line x1="12" y1="5" x2="12" y2="19"></line>
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                     </svg>
@@ -202,7 +240,7 @@
                         <polyline points="12 7 12 12 15 15"/>
                     </svg>
                 ),
-                "settings-2": (
+                "settings": (
                     <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
                         <path d="M20 7h-9"/>
                         <path d="M14 17H5"/>
@@ -218,10 +256,15 @@
                         <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
                     </svg>
                 ),
-                "lock": (
-                    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
-                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                "sun": (
+                    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                        <circle cx="12" cy="12" r="4"/>
+                        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+                    </svg>
+                ),
+                "moon": (
+                    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
                     </svg>
                 ),
                 "x": (
@@ -237,38 +280,27 @@
                         <line x1="22" y1="11" x2="16" y2="11"/>
                     </svg>
                 ),
-                "sun": (
+                "check-circle": (
                     <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-                        <circle cx="12" cy="12" r="4"/>
-                        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <polyline points="22 4 12 14.01 9 11.01"/>
                     </svg>
                 ),
-                "moon": (
+                "flame": (
                     <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-                        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+                        <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>
                     </svg>
                 ),
-                "alert-triangle": (
-                    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-                        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
-                        <line x1="12" y1="9" x2="12" y2="13"/>
-                        <line x1="12" y1="17" x2="12.01" y2="17"/>
-                    </svg>
-                ),
-                "check-circle-2": (
-                    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-                        <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
-                        <path d="m9 12 2 2 4-4"/>
-                    </svg>
-                ),
-                "pencil": (
-                    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-                        <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
-                    </svg>
-                ),
-                "loader-2": (
+                "loader": (
                     <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={`animate-spin ${className}`}>
                         <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
+                    </svg>
+                ),
+                "alert-circle": (
+                    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="12" y1="8" x2="12" y2="12"/>
+                        <line x1="12" y1="16" x2="12.01" y2="16"/>
                     </svg>
                 )
             };
@@ -279,125 +311,167 @@
             );
         });
 
-        const STORAGE_KEY = "rummy_scorer_prod_v201_fifa_final";
-        const THEME_KEY = "rummy_scorer_theme_pref_fifa";
+        const STORAGE_KEY = "rummy_scorer_diwali_v1";
+        const THEME_KEY = "rummy_scorer_diwali_theme";
         const DEFAULT_ROSTER = ['Player 1', 'Player 2', 'Player 3'];
 
-        // --- Stadium Ambient Visuals ---
+        // --- Ambient Festive Visual Components ---
 
-        const StadiumStarsAndBalls = React.memo(() => {
+        const FloatingPetalsAndSparkles = React.memo(({ isDarkMode }) => {
             const elements = useMemo(() => {
-                return Array.from({ length: 45 }).map((_, i) => ({
+                const items = ['🌸', '🪔', '✨', '🌼', '⭐'];
+                return Array.from({ length: 30 }).map((_, i) => ({
                     id: i,
                     left: Math.random() * 100,
-                    opacity: 0.15 + Math.random() * 0.45,
-                    duration: 5 + Math.random() * 6,
-                    delay: Math.random() * 5,
+                    opacity: 0.2 + Math.random() * 0.5,
+                    duration: 7 + Math.random() * 8,
+                    delay: Math.random() * 6,
                     size: 14 + Math.random() * 14,
-                    type: i % 2 === 0 ? "soccer-ball" : "trophy"
+                    char: items[i % items.length]
                 }));
             }, []);
 
             return (
-                <div className="fixed inset-0 pointer-events-none overflow-hidden z-10 opacity-30">
+                <div className="fixed inset-0 pointer-events-none overflow-hidden z-10 opacity-60">
                     {elements.map(item => (
-                        <div key={item.id} className="absolute animate-fall" style={{ 
+                        <div key={item.id} className="absolute animate-petal text-amber-300" style={{ 
                             left: `${item.left}%`, 
-                            top: '-50px',
-                            color: item.type === "trophy" ? "#fbbf24" : "#ffffff",
+                            top: '-40px',
+                            fontSize: `${item.size}px`,
                             '--item-opacity': item.opacity,
                             animationDuration: `${item.duration}s`, 
                             animationDelay: `${item.delay}s` 
                         }}>
-                            <Icon name={item.type} size={item.size} />
+                            {item.char}
                         </div>
                     ))}
-                    <div className="absolute inset-0 bg-white/70 animate-flash pointer-events-none"></div>
                 </div>
             );
         });
 
-        const StadiumSpotlights = React.memo(() => {
-            return (
-                <div className="absolute inset-0 pointer-events-none overflow-hidden z-[5] opacity-20">
-                    <div 
-                        className="absolute top-0 left-[20%] w-[350px] h-[150vh] origin-top bg-gradient-to-b from-cyan-400/40 via-blue-500/10 to-transparent"
-                        style={{
-                            transform: "rotate(-25deg)",
-                            animation: "spotlight-pan 12s ease-in-out infinite"
-                        }}
-                    ></div>
-                    <div 
-                        className="absolute top-0 right-[20%] w-[350px] h-[150vh] origin-top bg-gradient-to-b from-amber-400/30 via-yellow-500/5 to-transparent"
-                        style={{
-                            transform: "rotate(25deg)",
-                            animation: "spotlight-pan 12s ease-in-out infinite",
-                            animationDelay: "-6s"
-                        }}
-                    ></div>
+        // Background Rangoli Motif Vector Overlay
+        const RangoliBackground = React.memo(({ isDarkMode }) => (
+            <div className="fixed inset-0 pointer-events-none flex items-center justify-center overflow-hidden z-0 opacity-15">
+                <div className="w-[700px] h-[700px] animate-rangoli">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-full text-amber-500 fill-current">
+                        <circle cx="100" cy="100" r="95" fill="none" stroke="currentColor" strokeWidth="0.8" strokeDasharray="3 3"/>
+                        <circle cx="100" cy="100" r="75" fill="none" stroke="currentColor" strokeWidth="0.5"/>
+                        <circle cx="100" cy="100" r="55" fill="none" stroke="currentColor" strokeWidth="1"/>
+                        {Array.from({ length: 12 }).map((_, i) => (
+                            <g key={i} transform={`rotate(${i * 30} 100 100)`}>
+                                <path d="M100 20 C108 40, 108 50, 100 60 C92 50, 92 40, 100 20 Z" opacity="0.6"/>
+                                <circle cx="100" cy="15" r="2.5"/>
+                                <path d="M100 65 C115 80, 115 90, 100 100 C85 90, 85 80, 100 65 Z" opacity="0.3"/>
+                            </g>
+                        ))}
+                    </svg>
                 </div>
-            );
-        });
+            </div>
+        ));
 
-        const FIFACenterpiece = React.memo(() => (
-            <div className="relative w-48 h-64 flex items-center justify-center">
-                <div className="absolute w-80 h-80 bg-emerald-600/30 rounded-full blur-[100px] animate-stadium-lights"></div>
-                <div className="absolute w-60 h-60 bg-amber-500/20 rounded-full blur-[60px] animate-stadium-lights delay-1000"></div>
-                <div className="relative z-10 animate-trophy flex flex-col items-center">
-                    <div className="text-yellow-400 drop-shadow-[0_0_25px_rgba(234,179,8,0.7)]">
-                        <Icon name="trophy" size={130} />
+        // Animated Central Diya Artwork for Welcome Screen
+        const DiwaliCenterpiece = React.memo(() => (
+            <div className="relative w-56 h-56 flex items-center justify-center my-4">
+                {/* Glowing Aura Spheres */}
+                <div className="absolute w-72 h-72 bg-amber-500/25 rounded-full blur-[90px] animate-festive-glow"></div>
+                <div className="absolute w-48 h-48 bg-rose-600/20 rounded-full blur-[60px] animate-festive-glow" style={{ animationDelay: '-3s' }}></div>
+                
+                {/* Rangoli Plate Base */}
+                <div className="absolute w-44 h-44 rounded-full border-2 border-dashed border-amber-400/30 animate-rangoli opacity-70"></div>
+                
+                {/* Large Diya Visual */}
+                <div className="relative z-10 flex flex-col items-center">
+                    {/* Flame */}
+                    <div className="relative mb-[-12px] z-20">
+                        <div className="w-12 h-20 bg-gradient-to-t from-red-600 via-amber-500 to-yellow-200 rounded-full animate-flame"></div>
+                    </div>
+                    {/* Diya Base Vessel */}
+                    <div className="w-36 h-14 bg-gradient-to-r from-amber-700 via-yellow-600 to-amber-800 rounded-b-full border-t-4 border-amber-300 shadow-2xl flex items-center justify-center relative overflow-hidden">
+                        <div className="absolute inset-0 bg-amber-400/20 backdrop-blur-sm"></div>
+                        <span className="text-yellow-200 text-xs font-serif-royal font-bold tracking-widest relative z-10">🪔 SHUBH DIWALI 🪔</span>
                     </div>
                 </div>
             </div>
         ));
 
-        const CountdownTimer = React.memo(({ isDarkMode }) => {
-            const [timeLeft, setTimeLeft] = useState({ d: 0, h: 0, m: 0, s: 0, finished: false });
+        // Festive Winner Fireworks Visual Effect Canvas
+        const CelebrationFireworks = React.memo(({ active }) => {
+            const canvasRef = useRef(null);
 
             useEffect(() => {
-                const targetDate = new Date("2026-07-19T18:00:00").getTime();
-                const timer = setInterval(() => {
-                    const now = new Date().getTime();
-                    const diff = targetDate - now;
-                    if (diff <= 0) {
-                        setTimeLeft({ d: 0, h: 0, m: 0, s: 0, finished: true });
-                        clearInterval(timer);
-                    } else {
-                        setTimeLeft({
-                            d: Math.floor(diff / (1000 * 60 * 60 * 24)),
-                            h: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-                            m: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
-                            s: Math.floor((diff % (1000 * 60)) / 1000),
-                            finished: false
+                if (!active) return;
+                const canvas = canvasRef.current;
+                if (!canvas) return;
+                const ctx = canvas.getContext('2d');
+                let animationFrameId;
+
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+
+                const particles = [];
+                const colors = ['#f59e0b', '#fbbf24', '#ef4444', '#f43f5e', '#a855f7', '#3b82f6'];
+
+                const createFirework = () => {
+                    const x = Math.random() * canvas.width;
+                    const y = Math.random() * (canvas.height * 0.5);
+                    const count = 40;
+                    for (let i = 0; i < count; i++) {
+                        const angle = (Math.PI * 2 * i) / count;
+                        const speed = Math.random() * 4 + 2;
+                        particles.push({
+                            x, y,
+                            vx: Math.cos(angle) * speed,
+                            vy: Math.sin(angle) * speed,
+                            color: colors[Math.floor(Math.random() * colors.length)],
+                            radius: Math.random() * 3 + 1,
+                            alpha: 1,
+                            decay: Math.random() * 0.02 + 0.015
                         });
                     }
-                }, 1000);
-                return () => clearInterval(timer);
-            }, []);
+                };
 
-            return (
-                <div className="flex flex-col items-center mb-6 relative z-20">
-                    <div className="text-[10px] font-black uppercase tracking-[0.5em] mb-3 opacity-80 volt-text">2026 World Cup Final Countdown</div>
-                    <div className="flex gap-4">
-                        {[
-                            { label: 'Days', value: timeLeft.d },
-                            { label: 'Hrs', value: timeLeft.h },
-                            { label: 'Min', value: timeLeft.m },
-                            { label: 'Sec', value: timeLeft.s }
-                        ].map((unit, i) => (
-                            <div key={i} className="flex flex-col items-center">
-                                <div className={`text-3xl font-black tabular-nums tracking-tighter ${isDarkMode ? 'text-white' : 'text-emerald-950'}`}>
-                                    {String(unit.value).padStart(2, '0')}
-                                </div>
-                                <div className="text-[8px] font-bold uppercase tracking-widest opacity-40">{unit.label}</div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            );
+                let interval = setInterval(createFirework, 400);
+
+                const render = () => {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    for (let i = particles.length - 1; i >= 0; i--) {
+                        const p = particles[i];
+                        p.x += p.vx;
+                        p.y += p.vy;
+                        p.vy += 0.05; // gravity
+                        p.alpha -= p.decay;
+
+                        if (p.alpha <= 0) {
+                            particles.splice(i, 1);
+                            continue;
+                        }
+
+                        ctx.save();
+                        ctx.globalAlpha = p.alpha;
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                        ctx.fillStyle = p.color;
+                        ctx.shadowBlur = 10;
+                        ctx.shadowColor = p.color;
+                        ctx.fill();
+                        ctx.restore();
+                    }
+                    animationFrameId = requestAnimationFrame(render);
+                };
+
+                render();
+
+                return () => {
+                    clearInterval(interval);
+                    cancelAnimationFrame(animationFrameId);
+                };
+            }, [active]);
+
+            if (!active) return null;
+            return <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-[100]" />;
         });
 
-        // --- Core Application ---
+        // --- Main Application Component ---
 
         const App = () => {
             const [showWelcome, setShowWelcome] = useState(true);
@@ -406,12 +480,14 @@
                 return saved === null ? true : saved === 'true';
             });
 
+            // Primary Game State
             const [game, setGame] = useState(() => {
                 const data = localStorage.getItem(STORAGE_KEY);
                 if (data) return JSON.parse(data);
                 return { players: DEFAULT_ROSTER, rounds: [], history: [], inactive: [], reEntries: new Array(DEFAULT_ROSTER.length).fill(0) };
             });
 
+            // UI State
             const [ui, setUi] = useState({ add: false, editIdx: null, settings: false, history: false, bust: null, confirm: null, isSharing: false });
             const [form, setForm] = useState({ scores: {}, name: '', editIdx: null, editVal: '', error: null });
             const scrollRef = useRef(null);
@@ -422,6 +498,7 @@
             const inactive = game.inactive || [];
             const reEntries = game.reEntries || new Array(players.length).fill(0);
 
+            // Calculation Utilities
             const totals = useMemo(() => players.map((_, pIdx) => rounds.reduce((sum, r) => sum + (Array.isArray(r) ? (r[pIdx] || 0) : 0), 0)), [players, rounds]);
             const activeTotals = useMemo(() => totals.filter((_, i) => !inactive.includes(i)), [totals, inactive]);
             const leaderIdx = useMemo(() => rounds.length === 0 ? -1 : totals.findIndex((t, i) => !inactive.includes(i) && t === Math.min(...activeTotals)), [totals, inactive, activeTotals, rounds]);
@@ -430,7 +507,7 @@
             useEffect(() => {
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(game));
                 localStorage.setItem(THEME_KEY, isDarkMode.toString());
-                if (!showWelcome) document.body.style.backgroundColor = isDarkMode ? "#022c22" : "#f0fdf4";
+                if (!showWelcome) document.body.style.backgroundColor = isDarkMode ? "#2b0404" : "#fffbeb";
             }, [game, isDarkMode, showWelcome]);
 
             useEffect(() => {
@@ -439,6 +516,7 @@
                 }
             }, [game.rounds, showWelcome]);
 
+            // Lock Rule: Buy-In Re-Entry is disabled if all active safe opponents are at score >= 180
             const isPlayerLocked = (pIdx) => {
                 if (!ui.bust) return false;
                 const safeOpponents = ui.bust.proj.filter((t, idx) => 
@@ -452,14 +530,18 @@
                 setForm(f => ({ ...f, error: null }));
                 const entry = players.map((p, i) => inactive.includes(i) ? 0 : parseInt(form.scores[p] || 0));
                 
+                // Exactly 1 player must get 0 points (the hand winner)
                 if (entry.filter((s, i) => !inactive.includes(i) && s === 0).length !== 1) {
-                    setForm(f => ({ ...f, error: "One winner (score 0) is required." })); return;
+                    setForm(f => ({ ...f, error: "One winner (score 0) is required for this hand." }));
+                    return;
                 }
 
                 if (isEditing) {
-                    const up = [...rounds]; up[ui.editIdx] = entry;
+                    const up = [...rounds]; 
+                    up[ui.editIdx] = entry;
                     setGame(g => ({ ...g, rounds: up }));
-                    setUi(u => ({ ...u, editIdx: null })); setForm(f => ({ ...f, scores: {} }));
+                    setUi(u => ({ ...u, editIdx: null })); 
+                    setForm(f => ({ ...f, scores: {} }));
                 } else {
                     const proj = totals.map((t, i) => t + (entry[i] || 0));
                     const bustedIdxs = proj.map((t, i) => (!inactive.includes(i) && t > 200) ? i : -1).filter(i => i !== -1);
@@ -470,7 +552,8 @@
                         setUi(u => ({ ...u, bust: { idxs: bustedIdxs, current: bustedIdxs[0], target, pending: entry, proj } }));
                     } else {
                         setGame(g => ({ ...g, rounds: [...g.rounds, entry] }));
-                        setUi(u => ({ ...u, add: false })); setForm(f => ({ ...f, scores: {} }));
+                        setUi(u => ({ ...u, add: false })); 
+                        setForm(f => ({ ...f, scores: {} }));
                     }
                 }
             };
@@ -479,7 +562,8 @@
                 const scores = [...ui.bust.pending];
                 const pIdx = ui.bust.current;
                 const locked = isPlayerLocked(pIdx);
-                let upIn = [...inactive]; let upRe = [...reEntries];
+                let upIn = [...inactive]; 
+                let upRe = [...reEntries];
 
                 if (rejoin && !locked) {
                     scores[pIdx] = ui.bust.target - totals[pIdx];
@@ -491,7 +575,8 @@
                 const remaining = ui.bust.idxs.filter(i => i !== pIdx);
                 if (remaining.length === 0) {
                     setGame(g => ({ ...g, inactive: upIn, reEntries: upRe, rounds: [...g.rounds, scores] }));
-                    setUi(u => ({ ...u, bust: null, add: false })); setForm(f => ({ ...f, scores: {} }));
+                    setUi(u => ({ ...u, bust: null, add: false })); 
+                    setForm(f => ({ ...f, scores: {} }));
                 } else {
                     setGame(g => ({ ...g, inactive: upIn, reEntries: upRe }));
                     setUi(u => ({ ...u, bust: { ...u.bust, current: remaining[0], idxs: remaining, pending: scores } }));
@@ -499,11 +584,12 @@
             };
 
             const midGameJoin = () => {
-                if(!form.name.trim()) return;
+                if (!form.name.trim()) return;
                 const activeHigh = activeTotals.length > 0 ? Math.max(...activeTotals) : Math.max(...totals);
                 const joinScore = activeHigh + 1;
                 setGame(g => ({
-                    ...g, players: [...g.players, form.name.trim()], 
+                    ...g, 
+                    players: [...g.players, form.name.trim()], 
                     reEntries: [...(g.reEntries || new Array(g.players.length).fill(0)), 0],
                     rounds: g.rounds.map((r, i) => i === 0 ? [...r, joinScore] : [...r, 0])
                 }));
@@ -512,31 +598,58 @@
 
             const savePlayerNameEdit = (idx) => {
                 if (!form.editVal.trim()) return;
-                const up = [...players]; up[idx] = form.editVal.trim();
+                const up = [...players]; 
+                up[idx] = form.editVal.trim();
                 setGame(prev => ({ ...prev, players: up }));
                 setForm(f => ({ ...f, editIdx: null, editVal: '' }));
             };
 
             const startNewMatch = () => {
                 if (rounds.length === 0) return;
-                setUi(u => ({ ...u, confirm: { msg: "End the tournament and head to the locker room?", fn: () => {
-                    const summary = { id: Date.now(), ts: Date.now(), players: [...players], rounds: [...rounds], inactive: [...inactive], reEntries: [...reEntries], finalScores: [...totals] };
-                    setGame(prev => ({ ...prev, rounds: [], inactive: [], reEntries: new Array(prev.players.length).fill(0), history: [summary, ...(prev.history || [])].slice(0, 10) }));
-                    setUi(prevUi => ({ ...prevUi, confirm: null }));
-                }}}));
+                setUi(u => ({ 
+                    ...u, 
+                    confirm: { 
+                        msg: "Conclude current match and save to history log?", 
+                        fn: () => {
+                            const summary = { 
+                                id: Date.now(), 
+                                ts: Date.now(), 
+                                players: [...players], 
+                                rounds: [...rounds], 
+                                inactive: [...inactive], 
+                                reEntries: [...reEntries], 
+                                finalScores: [...totals] 
+                            };
+                            setGame(prev => ({ 
+                                ...prev, 
+                                rounds: [], 
+                                inactive: [], 
+                                reEntries: new Array(prev.players.length).fill(0), 
+                                history: [summary, ...(prev.history || [])].slice(0, 15) 
+                            }));
+                            setUi(prevUi => ({ ...prevUi, confirm: null }));
+                        }
+                    }
+                }));
             };
 
             const restoreSession = (log) => {
-                setUi({ ...ui, confirm: { msg: "Restore session? Current match data will be overwritten.", fn: () => {
-                    setGame(prev => ({ 
-                        ...prev, 
-                        players: log.players, 
-                        rounds: log.rounds, 
-                        inactive: log.inactive || [], 
-                        reEntries: log.reEntries || new Array(log.players.length).fill(0) 
-                    }));
-                    setUi(u => ({ ...u, history: false, confirm: null }));
-                }}});
+                setUi({ 
+                    ...ui, 
+                    confirm: { 
+                        msg: "Restore this game log? Current scoreboard will be updated.", 
+                        fn: () => {
+                            setGame(prev => ({ 
+                                ...prev, 
+                                players: log.players, 
+                                rounds: log.rounds, 
+                                inactive: log.inactive || [], 
+                                reEntries: log.reEntries || new Array(log.players.length).fill(0) 
+                            }));
+                            setUi(u => ({ ...u, history: false, confirm: null }));
+                        }
+                    }
+                });
             };
 
             const shareAsScreenshot = async () => {
@@ -545,18 +658,28 @@
                 setUi(prev => ({ ...prev, isSharing: true }));
                 try {
                     const canvas = await html2canvas(element, {
-                        backgroundColor: isDarkMode ? "#022c22" : "#f0fdf4",
-                        scale: 2, logging: false, useCORS: true
+                        backgroundColor: isDarkMode ? "#2b0404" : "#fffbeb",
+                        scale: 2, 
+                        logging: false, 
+                        useCORS: true
                     });
                     canvas.toBlob(async (blob) => {
                         if (!blob) return;
-                        const file = new File([blob], "world-cup-rummy.png", { type: "image/png" });
+                        const file = new File([blob], "diwali-rummy-scores.png", { type: "image/png" });
                         if (navigator.canShare && navigator.canShare({ files: [file] })) {
-                            try { await navigator.share({ files: [file], title: 'World Cup Rummy', text: 'Cup Standings' }); } catch (e) {
-                                const link = document.createElement('a'); link.download = 'standings.png'; link.href = URL.createObjectURL(blob); link.click();
+                            try { 
+                                await navigator.share({ files: [file], title: 'Diwali Rummy Match', text: 'Shubh Diwali Rummy Scorecard' }); 
+                            } catch (e) {
+                                const link = document.createElement('a'); 
+                                link.download = 'diwali-rummy-scorecard.png'; 
+                                link.href = URL.createObjectURL(blob); 
+                                link.click();
                             }
                         } else {
-                            const link = document.createElement('a'); link.download = 'standings.png'; link.href = URL.createObjectURL(blob); link.click();
+                            const link = document.createElement('a'); 
+                            link.download = 'diwali-rummy-scorecard.png'; 
+                            link.href = URL.createObjectURL(blob); 
+                            link.click();
                         }
                         setUi(prev => ({ ...prev, isSharing: false }));
                     }, "image/png");
@@ -566,73 +689,129 @@
             };
 
             return (
-                <div className={`fixed inset-0 flex flex-col transition-colors duration-500 overflow-hidden ${isDarkMode ? 'bg-[#022c22]' : 'bg-[#f0fdf4]'}`}>
-                    <StadiumStarsAndBalls />
-                    <StadiumSpotlights />
+                <div className={`fixed inset-0 flex flex-col transition-colors duration-500 overflow-hidden ${isDarkMode ? 'diwali-bg-dark text-amber-100' : 'diwali-bg-light text-amber-950'}`}>
+                    <FloatingPetalsAndSparkles isDarkMode={isDarkMode} />
+                    <RangoliBackground isDarkMode={isDarkMode} />
+                    <CelebrationFireworks active={matchOver} />
                     
-                    <nav className={`flex-none px-4 py-4 z-40 pt-safe border-b backdrop-blur-xl ${isDarkMode ? 'bg-emerald-950/80 border-white/5 text-slate-100' : 'bg-white/90 border-emerald-100 text-emerald-950 shadow-sm'}`}>
+                    {/* TOP NAVIGATION BAR */}
+                    <nav className={`flex-none px-4 py-3 z-40 pt-safe border-b backdrop-blur-xl ${isDarkMode ? 'bg-[#2b0404]/80 border-amber-500/20 text-amber-100' : 'bg-white/80 border-amber-200 text-amber-950 shadow-sm'}`}>
                         <div className="max-w-4xl mx-auto flex items-center justify-between">
-                            <div className="flex items-center gap-2 group">
-                                <button onClick={() => setShowWelcome(true)} className="w-10 h-10 rounded-2xl flex items-center justify-center text-white shadow-lg bg-yellow-500 active:scale-90 transition-all"><Icon name="trophy" /></button>
-                                <div className="text-left leading-none">
-                                    <h1 className="text-[11px] font-black uppercase tracking-tight text-yellow-400">Rummy Scorer</h1>
-                                    <span className="text-[9px] font-bold uppercase opacity-80 italic leading-none">World Cup 2026</span>
+                            <div className="flex items-center gap-3">
+                                <button onClick={() => setShowWelcome(true)} className="w-10 h-10 rounded-2xl flex items-center justify-center text-amber-950 bg-gradient-to-tr from-amber-500 to-yellow-300 shadow-lg shadow-amber-500/30 active:scale-95 transition-transform">
+                                    <Icon name="diya" size={24} />
+                                </button>
+                                <div className="text-left">
+                                    <h1 className="text-sm font-serif-royal font-black uppercase tracking-wider gold-shimmer-text">Rummy Scorer</h1>
+                                    <span className="text-[9px] font-bold uppercase opacity-80 tracking-widest block text-amber-400">✨ Diwali Edition ✨</span>
                                 </div>
                             </div>
-                            <div className="flex items-center gap-1">
-                                <button onClick={startNewMatch} className="p-2 opacity-70 hover:opacity-100 text-yellow-500 active:scale-90 transition-all"><Icon name="rotate-ccw" /></button>
-                                <button onClick={() => setUi({...ui, history: true})} className="p-2 opacity-70 active:scale-90 transition-all"><Icon name="history" /></button>
-                                <button onClick={() => setUi({...ui, settings: true})} className="p-2 opacity-70 active:scale-90 transition-all"><Icon name="settings-2" /></button>
+                            <div className="flex items-center gap-1.5">
+                                <button onClick={() => setIsDarkMode(!isDarkMode)} className={`p-2.5 rounded-xl transition-all active:scale-90 ${isDarkMode ? 'bg-amber-500/10 text-amber-300 hover:bg-amber-500/20' : 'bg-amber-100 text-amber-800'}`}>
+                                    <Icon name={isDarkMode ? "sun" : "moon"} size={18} />
+                                </button>
+                                <button onClick={startNewMatch} title="New Match" className="p-2.5 rounded-xl opacity-80 hover:opacity-100 text-amber-400 active:scale-90 transition-transform">
+                                    <Icon name="rotate-ccw" size={18} />
+                                </button>
+                                <button onClick={() => setUi({...ui, history: true})} title="History" className="p-2.5 rounded-xl opacity-80 hover:opacity-100 text-amber-400 active:scale-90 transition-transform">
+                                    <Icon name="history" size={18} />
+                                </button>
+                                <button onClick={() => setUi({...ui, settings: true})} title="Players Settings" className="p-2.5 rounded-xl opacity-80 hover:opacity-100 text-amber-400 active:scale-90 transition-transform">
+                                    <Icon name="settings" size={18} />
+                                </button>
                             </div>
                         </div>
                     </nav>
 
+                    {/* WELCOME / FESTIVE LANDING SCREEN */}
                     {showWelcome ? (
-                        <div className={`fixed inset-0 flex flex-col items-center justify-center p-8 z-50 ${isDarkMode ? 'bg-[#022c22]' : 'bg-[#f0fdf4]'}`}>
-                            <CountdownTimer isDarkMode={isDarkMode} />
-                            <FIFACenterpiece />
-                            <div className="text-center mt-8">
-                                <h1 className="text-4xl font-black uppercase italic text-yellow-400 tracking-tighter">Match Kick-off</h1>
-                                <p className="text-xs font-black uppercase opacity-60 mt-2 mb-10 tracking-[0.2em]">World Cup 2026 Finals Tournament</p>
-                                <button onClick={() => setShowWelcome(false)} className="px-12 py-5 bg-yellow-500 text-black rounded-3xl font-black uppercase shadow-2xl tracking-widest active:scale-95 transition-all">Start Match</button>
+                        <div className={`fixed inset-0 flex flex-col items-center justify-center p-6 z-50 transition-all ${isDarkMode ? 'diwali-bg-dark text-amber-100' : 'diwali-bg-light text-amber-950'}`}>
+                            <FloatingPetalsAndSparkles isDarkMode={isDarkMode} />
+                            <RangoliBackground isDarkMode={isDarkMode} />
+                            
+                            <div className="relative z-20 flex flex-col items-center max-w-sm text-center">
+                                <span className="text-xs font-serif-royal uppercase tracking-[0.4em] text-amber-400 mb-2 font-bold flex items-center gap-2">
+                                    <span>✨</span> Shubh Deepavali <span>✨</span>
+                                </span>
+                                
+                                <DiwaliCenterpiece />
+
+                                <h1 className="text-3xl font-serif-royal font-black uppercase text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-amber-400 to-yellow-500 tracking-tight mt-4">
+                                    Festive Rummy
+                                </h1>
+                                <p className="text-xs font-medium opacity-80 mt-2 mb-8 leading-relaxed max-w-xs">
+                                    Celebrate Diwali with friends & family. Track points effortlessly with buy-ins, automatic totals, and festive leaderboard crowns.
+                                </p>
+
+                                <button onClick={() => setShowWelcome(false)} className="w-full py-4 px-8 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 text-amber-950 font-serif-royal font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-amber-500/25 active:scale-95 transition-all border border-yellow-200 flex items-center justify-center gap-2">
+                                    <Icon name="diya" size={22} /> Enter Tournament
+                                </button>
                             </div>
                         </div>
                     ) : (
-                        <div id="scoreboard-capture" className="flex-1 flex flex-col overflow-hidden relative">
-                            <div className={`flex-none flex border-b-2 z-20 ${isDarkMode ? 'bg-emerald-950/70 border-white/5 shadow-lg text-slate-100' : 'bg-white shadow-sm text-emerald-950'}`}>
-                                <div className="w-10 flex items-center justify-center text-[8px] font-black text-emerald-500/80 italic uppercase leading-none">Match</div>
+                        /* MAIN SCOREBOARD VIEW */
+                        <div id="scoreboard-capture" className="flex-1 flex flex-col overflow-hidden relative z-20">
+                            {/* SCOREBOARD HEADER */}
+                            <div className={`flex-none flex border-b-2 z-20 ${isDarkMode ? 'bg-[#3b070c]/80 border-amber-500/20 text-amber-100' : 'bg-white/90 border-amber-200 text-amber-950 shadow-sm'}`}>
+                                <div className="w-12 flex items-center justify-center text-[9px] font-serif-royal font-bold text-amber-500/80 uppercase">Hand</div>
                                 <div className="flex-1 flex">
                                     {players.map((p, i) => (
-                                        <div key={i} className={`flex-1 border-r last:border-r-0 py-3 text-center truncate transition-all duration-500 ${inactive.includes(i) ? 'player-inactive bg-black/15' : ''}`}>
-                                            <div className="flex flex-col items-center justify-center px-0.5 min-w-0">
-                                                <span className={`text-[10px] font-black uppercase truncate block w-full tracking-tight ${isDarkMode ? 'text-yellow-400' : 'text-emerald-800'}`}>{p}</span>
-                                                {reEntries[i] > 0 && <span className="bg-amber-500 text-black text-[6px] px-1 rounded-sm leading-none py-1 font-black">R{reEntries[i]}</span>}
-                                                {inactive.includes(i) && <span className="text-[6px] text-red-500 font-bold uppercase mt-1 italic leading-none">RED CARD</span>}
+                                        <div key={i} className={`flex-1 border-r last:border-r-0 border-amber-500/10 py-3 px-1 text-center truncate transition-all duration-300 ${inactive.includes(i) ? 'player-inactive bg-red-950/20' : ''}`}>
+                                            <div className="flex flex-col items-center justify-center min-w-0">
+                                                <span className={`text-[11px] font-black uppercase truncate block w-full tracking-wider ${isDarkMode ? 'text-amber-200' : 'text-amber-900'}`}>{p}</span>
+                                                {reEntries[i] > 0 && <span className="bg-amber-500/20 text-amber-400 text-[8px] font-bold px-1.5 py-0.5 rounded-full border border-amber-500/40 mt-0.5">Re-entry #{reEntries[i]}</span>}
+                                                {inactive.includes(i) && <span className="text-[7px] text-rose-500 font-bold uppercase mt-0.5 tracking-tighter">Eliminated</span>}
                                             </div>
                                         </div>
                                     ))}
                                 </div>
                             </div>
-                            <div ref={scrollRef} className="flex-1 overflow-y-auto no-scrollbar bg-black/5">
-                                {rounds.map((round, rIdx) => (
-                                    <div key={rIdx} className={`flex border-b transition-colors ${isDarkMode ? 'border-white/5 hover:bg-white/5 text-slate-100' : 'border-emerald-100 hover:bg-white text-emerald-950'}`}>
-                                        <div className="w-10 flex flex-col items-center justify-center py-4"><span className="text-[10px] font-bold text-slate-500 italic">{rIdx + 1}</span><button onClick={() => { setUi({...ui, editIdx: rIdx}); const c = {}; players.forEach((p, i) => c[p] = round[i]); setForm({...form, scores: c}); }} className="text-yellow-500/40 mt-1 active:scale-90 transition-all"><Icon name="pencil-line" size={12} /></button></div>
-                                        <div className="flex-1 flex">
-                                            {round.map((score, cIdx) => (
-                                                <div key={cIdx} className={`flex-1 border-r last:border-r-0 flex items-center justify-center py-4 transition-all duration-500 ${inactive.includes(cIdx) ? 'opacity-20 grayscale' : ''}`}>
-                                                    {score === 0 ? <span className="w-7 h-7 rounded-full bg-yellow-500 text-black flex items-center justify-center text-[10px] font-black shadow-md border border-white/20">0</span> : <span className={`text-sm font-bold tabular-nums ${isDarkMode ? 'text-slate-200' : 'text-slate-700'}`}>{score}</span>}
-                                                </div>
-                                            ))}
-                                        </div>
+
+                            {/* ROUNDS LIST SCROLLABLE AREA */}
+                            <div ref={scrollRef} className="flex-1 overflow-y-auto no-scrollbar">
+                                {rounds.length === 0 ? (
+                                    <div className="h-full flex flex-col items-center justify-center opacity-40 p-8 text-center">
+                                        <Icon name="sparkles" size={40} className="text-amber-400 mb-3 animate-pulse" />
+                                        <p className="text-xs font-serif-royal uppercase tracking-widest font-bold">No Hands Recorded</p>
+                                        <span className="text-[10px] opacity-70 mt-1">Tap 'Record Hand Score' below to begin</span>
                                     </div>
-                                ))}
+                                ) : (
+                                    rounds.map((round, rIdx) => (
+                                        <div key={rIdx} className={`flex border-b transition-colors ${isDarkMode ? 'border-amber-500/10 hover:bg-amber-500/5 text-amber-100' : 'border-amber-100 hover:bg-amber-50/50 text-amber-950'}`}>
+                                            <div className="w-12 flex flex-col items-center justify-center py-3">
+                                                <span className="text-[10px] font-mono font-bold text-amber-500/70">#{rIdx + 1}</span>
+                                                <button onClick={() => { setUi({...ui, editIdx: rIdx}); const c = {}; players.forEach((p, i) => c[p] = round[i]); setForm({...form, scores: c}); }} className="text-amber-400/50 hover:text-amber-400 mt-0.5 active:scale-90 transition-all">
+                                                    <Icon name="pencil-line" size={13} />
+                                                </button>
+                                            </div>
+                                            <div className="flex-1 flex">
+                                                {round.map((score, cIdx) => (
+                                                    <div key={cIdx} className={`flex-1 border-r last:border-r-0 border-amber-500/10 flex items-center justify-center py-3 transition-all duration-300 ${inactive.includes(cIdx) ? 'opacity-20 grayscale' : ''}`}>
+                                                        {score === 0 ? (
+                                                            <span className="w-7 h-7 rounded-full bg-gradient-to-tr from-amber-500 to-yellow-300 text-amber-950 flex items-center justify-center text-xs font-black shadow-md border border-yellow-200 animate-pulse">0</span>
+                                                        ) : (
+                                                            <span className={`text-sm font-bold tabular-nums ${isDarkMode ? 'text-amber-100/90' : 'text-amber-950'}`}>{score}</span>
+                                                        )}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    ))
+                                )}
                             </div>
-                            <div className={`flex-none flex text-white shadow-[0_-10px_30px_rgba(0,0,0,0.3)] z-30 transition-colors ${isDarkMode ? 'bg-emerald-900 border-t border-white/5' : 'bg-emerald-700 shadow-xl'}`}>
-                                <div className="w-10 flex items-center justify-center text-[8px] font-black italic bg-black/20 text-yellow-300 uppercase leading-tight">Total</div>
+
+                            {/* TOTALS FOOTER ROW */}
+                            <div className={`flex-none flex text-amber-100 shadow-[0_-10px_30px_rgba(0,0,0,0.4)] z-30 ${isDarkMode ? 'bg-[#3b070c] border-t-2 border-amber-500/30' : 'bg-amber-800 text-amber-100'}`}>
+                                <div className="w-12 flex items-center justify-center text-[9px] font-serif-royal font-black bg-amber-950/40 text-amber-300 uppercase">Total</div>
                                 <div className="flex-1 flex">
                                     {totals.map((total, i) => (
-                                        <div key={i} className={`flex-1 py-4 border-r last:border-r-0 border-white/5 text-center font-black text-lg min-w-0 transition-all duration-500 ${inactive.includes(i) ? 'total-inactive grayscale' : ''}`}>
-                                            <span className="flex items-center justify-center gap-1">{total} {i === leaderIdx && !inactive.includes(i) && rounds.length > 0 && <Icon name="soccer-ball" size={16} className="text-yellow-400 animate-bounce" />}</span>
+                                        <div key={i} className={`flex-1 py-3.5 border-r last:border-r-0 border-amber-500/20 text-center font-black text-lg min-w-0 transition-all duration-300 ${inactive.includes(i) ? 'total-inactive' : ''}`}>
+                                            <span className="flex items-center justify-center gap-1.5">
+                                                {total} 
+                                                {i === leaderIdx && !inactive.includes(i) && rounds.length > 0 && (
+                                                    <Icon name="crown" size={18} className="text-yellow-400 animate-bounce" />
+                                                )}
+                                            </span>
                                         </div>
                                     ))}
                                 </div>
@@ -640,116 +819,184 @@
                         </div>
                     )}
 
-                    <div className={`p-5 pb-safe flex-none border-t z-20 ${isDarkMode ? 'bg-emerald-950/90 border-white/5' : 'bg-white border-emerald-100 shadow-xl'}`}>
-                        {matchOver ? (
-                            <div className="text-center p-2 animate-in zoom-in-95 duration-500"><h4 className="text-xl font-black italic text-yellow-400 uppercase mb-3 text-center">🏆 Champions League Winner!</h4><button onClick={startNewMatch} className="px-10 py-4 bg-yellow-500 text-black rounded-full text-xs font-black uppercase active:scale-95 transition-all shadow-xl">New Cup</button></div>
-                        ) : (
-                            <div className="flex gap-2 max-w-lg mx-auto">
-                                <button onClick={() => setUi({...ui, add: true})} className="flex-1 h-16 bg-yellow-500 hover:bg-yellow-400 text-black rounded-3xl font-black uppercase tracking-widest shadow-xl flex items-center justify-center gap-3 active:scale-95 transition-all"><Icon name="plus" size={24} /> Record Score</button>
-                                <button onClick={shareAsScreenshot} disabled={ui.isSharing} className={`px-6 h-16 rounded-2xl font-black shadow-xl flex items-center justify-center transition-all active:scale-95 ${isDarkMode ? 'bg-emerald-900 text-yellow-400' : 'bg-emerald-50 text-emerald-800'} ${ui.isSharing ? 'animate-pulse' : ''}`}>
-                                    {ui.isSharing ? <Icon name="loader-2" size={24} /> : <Icon name="camera" size={24} />}
-                                </button>
-                            </div>
-                        )}
-                    </div>
+                    {/* BOTTOM ACTION BAR */}
+                    {!showWelcome && (
+                        <div className={`p-4 pb-safe flex-none border-t z-30 ${isDarkMode ? 'bg-[#2b0404]/90 border-amber-500/20' : 'bg-white border-amber-200 shadow-xl'}`}>
+                            {matchOver ? (
+                                <div className="text-center p-2 animate-in zoom-in-95 duration-500">
+                                    <h4 className="text-xl font-serif-royal font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-400 uppercase mb-2">
+                                        🏆 Shubh Diwali Champion! 🏆
+                                    </h4>
+                                    <button onClick={startNewMatch} className="px-8 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-400 text-amber-950 rounded-2xl font-serif-royal font-black uppercase text-xs shadow-lg active:scale-95 transition-all">
+                                        Start New Tournament
+                                    </button>
+                                </div>
+                            ) : (
+                                <div className="flex gap-3 max-w-lg mx-auto">
+                                    <button onClick={() => setUi({...ui, add: true})} className="flex-1 h-14 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 hover:brightness-110 text-amber-950 rounded-2xl font-serif-royal font-black uppercase tracking-wider shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2 active:scale-95 transition-all border border-yellow-200">
+                                        <Icon name="plus" size={22} /> Record Hand Score
+                                    </button>
+                                    <button onClick={shareAsScreenshot} disabled={ui.isSharing} className={`px-5 h-14 rounded-2xl font-bold shadow-lg flex items-center justify-center transition-all active:scale-95 ${isDarkMode ? 'bg-amber-500/10 text-amber-300 border border-amber-500/30' : 'bg-amber-100 text-amber-900'} ${ui.isSharing ? 'animate-pulse' : ''}`}>
+                                        {ui.isSharing ? <Icon name="loader" size={22} /> : <Icon name="camera" size={22} />}
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                    )}
 
-                    {/* MODAL SYSTEM */}
+                    {/* FESTIVE MODALS OVERLAY SYSTEM */}
                     {(ui.add || ui.editIdx !== null || ui.settings || ui.history || ui.bust || ui.confirm) && (
-                        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm animate-in fade-in">
+                        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in">
                             
+                            {/* ADD / EDIT SCORES MODAL */}
                             {(ui.add || ui.editIdx !== null) && (
-                                <div className={`w-full max-w-md rounded-[2.5rem] p-8 shadow-2xl border animate-in slide-in-from-bottom-10 ${isDarkMode ? 'bg-emerald-900 border-white/5 text-white' : 'bg-white border-emerald-100 text-slate-900'}`}>
-                                    <div className="flex justify-between items-center mb-6"><h3 className="text-xl font-black text-yellow-400 uppercase italic">{ui.editIdx !== null ? "Edit Hand" : "Add Hand"}</h3><button onClick={() => setUi({...ui, add: false, editIdx: null})} className="text-slate-500 p-2"><Icon name="x" size={28} /></button></div>
-                                    {form.error && <div className="mb-4 bg-red-500/10 p-3 rounded-xl text-[10px] font-black text-red-500 uppercase animate-bounce">{form.error}</div>}
-                                    <div className="grid grid-cols-2 gap-4 mb-8 max-h-[40vh] overflow-y-auto pr-1 no-scrollbar">{players.map((p, idx) => !inactive.includes(idx) && (<div key={idx} className="flex flex-col gap-2"><label className="text-[10px] font-black uppercase text-yellow-400 truncate">{p}</label><input type="number" inputMode="numeric" value={form.scores[p] || ''} onChange={e => setForm({...form, scores: {...form.scores, [p]: e.target.value}})} className={`w-full p-5 rounded-2xl text-center text-3xl font-black outline-none border transition-all ${isDarkMode ? 'bg-emerald-950 border-white/5 text-yellow-300' : 'bg-emerald-50 border-emerald-100 text-emerald-950'}`} placeholder="0" /></div>))}</div>
-                                    <button onClick={() => submitScores(ui.editIdx !== null)} className="w-full bg-yellow-500 hover:bg-yellow-400 text-black py-6 rounded-3xl font-black uppercase shadow-xl tracking-widest active:scale-95 transition-all">Confirm Hand</button>
+                                <div className={`w-full max-w-md rounded-3xl p-6 shadow-2xl border ${isDarkMode ? 'royal-glass-dark text-amber-100' : 'royal-glass-light text-amber-950'}`}>
+                                    <div className="flex justify-between items-center mb-5">
+                                        <h3 className="text-lg font-serif-royal font-black text-amber-400 uppercase flex items-center gap-2">
+                                            <Icon name="diya" size={20} /> {ui.editIdx !== null ? "Edit Hand Score" : "Record Hand Score"}
+                                        </h3>
+                                        <button onClick={() => setUi({...ui, add: false, editIdx: null})} className="text-amber-400/60 hover:text-amber-400 p-1">
+                                            <Icon name="x" size={24} />
+                                        </button>
+                                    </div>
+                                    
+                                    {form.error && (
+                                        <div className="mb-4 bg-rose-500/15 border border-rose-500/30 p-3 rounded-xl text-xs font-bold text-rose-400 flex items-center gap-2">
+                                            <Icon name="alert-circle" size={16} /> {form.error}
+                                        </div>
+                                    )}
+
+                                    <div className="grid grid-cols-2 gap-3 mb-6 max-h-[45vh] overflow-y-auto pr-1 no-scrollbar">
+                                        {players.map((p, idx) => !inactive.includes(idx) && (
+                                            <div key={idx} className="flex flex-col gap-1.5">
+                                                <label className="text-[10px] font-bold uppercase text-amber-400/90 truncate">{p}</label>
+                                                <input 
+                                                    type="number" 
+                                                    inputMode="numeric" 
+                                                    value={form.scores[p] !== undefined ? form.scores[p] : ''} 
+                                                    onChange={e => setForm({...form, scores: {...form.scores, [p]: e.target.value}})} 
+                                                    className={`w-full p-3.5 rounded-xl text-center text-2xl font-black outline-none border transition-all ${isDarkMode ? 'bg-black/40 border-amber-500/30 text-yellow-300 focus:border-amber-400' : 'bg-white border-amber-200 text-amber-950 focus:border-amber-500'}`} 
+                                                    placeholder="0" 
+                                                />
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    <button onClick={() => submitScores(ui.editIdx !== null)} className="w-full bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 text-amber-950 py-4 rounded-xl font-serif-royal font-black uppercase tracking-wider shadow-lg active:scale-95 transition-all">
+                                        Submit Hand
+                                    </button>
                                 </div>
                             )}
 
+                            {/* PLAYERS & SETTINGS MODAL */}
                             {ui.settings && (
-                                <div className={`w-full max-sm rounded-[2.5rem] p-8 shadow-2xl border ${isDarkMode ? 'bg-emerald-900 border-white/5 text-white' : 'bg-white border-emerald-100 text-slate-900'}`}>
-                                    <h3 className="text-xl font-black text-yellow-400 uppercase mb-8 flex items-center gap-3 tracking-tighter"><Icon name="users" /> Tournament Registry</h3>
-                                    <input type="text" value={form.name} onChange={e => setForm({...form, name: e.target.value})} placeholder="Player Name" className={`w-full p-5 rounded-2xl mb-4 font-bold outline-none border ${isDarkMode ? 'bg-emerald-950 border-white/5 text-yellow-300' : 'bg-emerald-50 border-emerald-100'}`} />
-                                    <div className="grid grid-cols-2 gap-2 mb-8">
-                                        <button onClick={() => { if(form.name) { setGame(g=>({...g, players: [...g.players, form.name.trim()], rounds: [], inactive: [], reEntries: new Array(g.players.length+1).fill(0)})); setForm(f=>({...f, name:''})); setUi(u=>({...u, settings: false})); }}} className={`py-4 rounded-2xl text-[10px] font-black uppercase border active:scale-95 transition-all border-white/10 bg-slate-800`}>Reset Pitch</button>
-                                        <button onClick={midGameJoin} className="py-4 bg-yellow-500 text-black rounded-2xl text-[10px] font-black uppercase shadow-lg active:scale-95 transition-all">Join @ Max+1</button>
+                                <div className={`w-full max-w-sm rounded-3xl p-6 shadow-2xl border ${isDarkMode ? 'royal-glass-dark text-amber-100' : 'royal-glass-light text-amber-950'}`}>
+                                    <h3 className="text-lg font-serif-royal font-black text-amber-400 uppercase mb-6 flex items-center gap-2">
+                                        <Icon name="users" size={20} /> Tournament Roster
+                                    </h3>
+                                    
+                                    <input 
+                                        type="text" 
+                                        value={form.name} 
+                                        onChange={e => setForm({...form, name: e.target.value})} 
+                                        placeholder="Enter Player Name..." 
+                                        className={`w-full p-3.5 rounded-xl mb-3 font-semibold outline-none border ${isDarkMode ? 'bg-black/40 border-amber-500/30 text-yellow-300' : 'bg-white border-amber-200 text-amber-950'}`} 
+                                    />
+                                    
+                                    <div className="grid grid-cols-2 gap-2 mb-6">
+                                        <button onClick={() => { if(form.name) { setGame(g=>({...g, players: [...g.players, form.name.trim()], rounds: [], inactive: [], reEntries: new Array(g.players.length+1).fill(0)})); setForm(f=>({...f, name:''})); setUi(u=>({...u, settings: false})); }}} className="py-3 rounded-xl text-xs font-bold uppercase border border-amber-500/30 bg-amber-500/10 text-amber-300 active:scale-95 transition-all">
+                                            Reset Pitch
+                                        </button>
+                                        <button onClick={midGameJoin} className="py-3 bg-gradient-to-r from-amber-500 to-yellow-400 text-amber-950 rounded-xl text-xs font-bold uppercase shadow-md active:scale-95 transition-all">
+                                            Join @ High+1
+                                        </button>
                                     </div>
-                                    <div className="space-y-2 mb-8 max-h-48 overflow-y-auto pr-1 no-scrollbar">
+
+                                    <div className="space-y-2 mb-6 max-h-48 overflow-y-auto pr-1 no-scrollbar">
                                         {players.map((p, i) => (
-                                            <div key={i} className={`flex items-center justify-between p-3 border rounded-2xl transition-all ${isDarkMode ? 'bg-emerald-950 border-white/5' : 'bg-emerald-50 border-emerald-100 shadow-sm'} ${inactive.includes(i) ? 'opacity-30 grayscale' : ''}`}>
+                                            <div key={i} className={`flex items-center justify-between p-3 border rounded-xl transition-all ${isDarkMode ? 'bg-black/30 border-amber-500/20' : 'bg-white/80 border-amber-200'} ${inactive.includes(i) ? 'opacity-40' : ''}`}>
                                                 {form.editIdx === i ? (
                                                     <div className="flex-1 flex gap-2 min-w-0">
-                                                        <input type="text" value={form.editVal} onChange={e => setForm({...form, editVal: e.target.value})} className="flex-1 bg-black/40 px-3 py-1 rounded text-[10px] font-black uppercase outline-none text-yellow-300 min-w-0" autoFocus />
-                                                        <button onClick={() => savePlayerNameEdit(i)} className="text-emerald-500 shrink-0"><Icon name="check-circle-2" /></button>
+                                                        <input type="text" value={form.editVal} onChange={e => setForm({...form, editVal: e.target.value})} className="flex-1 bg-black/40 px-2 py-1 rounded text-xs font-bold outline-none text-yellow-300 min-w-0" autoFocus />
+                                                        <button onClick={() => savePlayerNameEdit(i)} className="text-amber-400 shrink-0"><Icon name="check-circle" size={18} /></button>
                                                     </div>
                                                 ) : (
                                                     <>
-                                                        <span className="text-[10px] font-black uppercase truncate max-w-[120px]">{p} {inactive.includes(i) && <span className="ml-1 text-[8px]">(OUT)</span>}</span>
+                                                        <span className="text-xs font-bold uppercase truncate max-w-[130px]">{p} {inactive.includes(i) && <span className="ml-1 text-[9px] text-rose-400">(OUT)</span>}</span>
                                                         <div className="flex gap-1 shrink-0">
-                                                            <button onClick={() => setForm({...form, editIdx: i, editVal: p})} className="p-2 opacity-50 text-emerald-500"><Icon name="pencil" size={16}/></button>
-                                                            {players.length > 2 && <button onClick={() => setUi({ ...ui, confirm: { msg: `Remove player ${p}? Tournament will reset.`, fn: () => { setGame({...game, players: players.filter((_, idx) => idx !== i), rounds: [], inactive: []}); setUi({...ui, confirm: null}); } } })} className="text-red-500 p-2"><Icon name="user-minus" size={18}/></button>}
+                                                            <button onClick={() => setForm({...form, editIdx: i, editVal: p})} className="p-1.5 opacity-60 hover:opacity-100 text-amber-400"><Icon name="pencil-line" size={15}/></button>
+                                                            {players.length > 2 && (
+                                                                <button onClick={() => setUi({ ...ui, confirm: { msg: `Remove ${p}? Game will reset.`, fn: () => { setGame({...game, players: players.filter((_, idx) => idx !== i), rounds: [], inactive: []}); setUi({...ui, confirm: null}); } } })} className="text-rose-400 p-1.5 opacity-60 hover:opacity-100"><Icon name="user-minus" size={15}/></button>
+                                                            )}
                                                         </div>
                                                     </>
                                                 )}
                                             </div>
                                         ))}
                                     </div>
-                                    <button onClick={() => setUi({...ui, settings: false})} className="w-full py-5 bg-emerald-950 text-white rounded-2xl font-black uppercase text-xs active:scale-95 transition-all border border-white/5 text-center">Close Registry</button>
+
+                                    <button onClick={() => setUi({...ui, settings: false})} className="w-full py-3.5 bg-amber-950 text-amber-300 rounded-xl font-bold uppercase text-xs border border-amber-500/30">
+                                        Done
+                                    </button>
                                 </div>
                             )}
 
+                            {/* HISTORY LOG MODAL */}
                             {ui.history && (
-                                <div className={`w-full max-w-md rounded-[2.5rem] p-8 shadow-2xl border ${isDarkMode ? 'bg-emerald-950 border-white/5 text-white' : 'bg-white border-emerald-100 text-slate-900'}`}>
-                                    <h3 className="text-xl font-black text-yellow-400 uppercase mb-6 flex items-center gap-3 tracking-tighter"><Icon name="history" /> History Log</h3>
-                                    <div className="space-y-4 max-h-[50vh] overflow-y-auto pr-1 no-scrollbar">
-                                        {sessionHistory.length === 0 ? <div className="py-20 text-center opacity-20 text-xs font-black uppercase italic tracking-widest text-center font-bold">Empty Archives</div> : sessionHistory.map((log) => (
-                                            <div key={log.id} className={`p-4 rounded-2xl border ${isDarkMode ? 'bg-black/40 border-white/5 shadow-inner' : 'bg-emerald-50 border-emerald-100 shadow-sm'}`}>
-                                                <div className="flex justify-between mb-3 border-b border-white/5 pb-2 text-yellow-400 font-black tracking-widest">
+                                <div className={`w-full max-w-md rounded-3xl p-6 shadow-2xl border ${isDarkMode ? 'royal-glass-dark text-amber-100' : 'royal-glass-light text-amber-950'}`}>
+                                    <h3 className="text-lg font-serif-royal font-black text-amber-400 uppercase mb-5 flex items-center gap-2">
+                                        <Icon name="history" size={20} /> Match History
+                                    </h3>
+                                    
+                                    <div className="space-y-3 max-h-[50vh] overflow-y-auto pr-1 no-scrollbar">
+                                        {sessionHistory.length === 0 ? (
+                                            <div className="py-16 text-center opacity-40 text-xs font-serif-royal uppercase tracking-widest font-bold">No Past Match Logs</div>
+                                        ) : sessionHistory.map((log) => (
+                                            <div key={log.id} className={`p-3.5 rounded-xl border ${isDarkMode ? 'bg-black/30 border-amber-500/20' : 'bg-white/90 border-amber-200'}`}>
+                                                <div className="flex justify-between items-center mb-2 border-b border-amber-500/10 pb-2 text-amber-400 font-bold">
                                                     <span className="text-[10px]">{new Date(log.id).toLocaleDateString()}</span>
-                                                    <button onClick={() => restoreSession(log)} className="text-[8px] bg-yellow-500 text-black px-2 py-1 rounded font-black uppercase active:scale-90 transition-all">Restore</button>
+                                                    <button onClick={() => restoreSession(log)} className="text-[9px] bg-gradient-to-r from-amber-500 to-yellow-400 text-amber-950 px-2.5 py-1 rounded-md font-bold uppercase active:scale-90 transition-all">Restore</button>
                                                 </div>
-                                                <div className="grid grid-cols-2 gap-2">
+                                                <div className="grid grid-cols-2 gap-x-4 gap-y-1">
                                                     {log.players.map((pName, pIdx) => (
-                                                        <div key={pIdx} className="flex items-center justify-between text-[10px] opacity-80 truncate">
+                                                        <div key={pIdx} className="flex items-center justify-between text-[11px] opacity-80">
                                                             <span className="truncate">{pName}</span>
-                                                            <span className="font-bold">{log.finalScores[pIdx]}</span>
+                                                            <span className="font-bold tabular-nums">{log.finalScores[pIdx]}</span>
                                                         </div>
                                                     ))}
                                                 </div>
                                             </div>
                                         ))}
                                     </div>
-                                    <button onClick={() => setUi({...ui, history: false})} className="w-full mt-8 py-5 bg-emerald-950 text-white rounded-2xl font-black uppercase text-xs active:scale-95 transition-all border border-white/5 text-center">Close</button>
+                                    
+                                    <button onClick={() => setUi({...ui, history: false})} className="w-full mt-6 py-3.5 bg-amber-950 text-amber-300 rounded-xl font-bold uppercase text-xs border border-amber-500/30">
+                                        Close History
+                                    </button>
                                 </div>
                             )}
 
+                            {/* CONFIRMATION DIALOG */}
                             {ui.confirm && (
-                                <div className="w-full max-w-xs rounded-[2.5rem] p-8 bg-emerald-950 border border-white/10 text-center shadow-2xl animate-in zoom-in-95">
-                                    <Icon name="alert-triangle" size={32} className="text-yellow-400 mb-4 mx-auto" />
-                                    <p className="text-sm font-black uppercase text-white mb-8 leading-tight tracking-tight text-center">{ui.confirm.msg}</p>
+                                <div className={`w-full max-w-xs rounded-3xl p-6 text-center shadow-2xl border animate-in zoom-in-95 ${isDarkMode ? 'royal-glass-dark text-amber-100' : 'royal-glass-light text-amber-950'}`}>
+                                    <Icon name="alert-circle" size={36} className="text-amber-400 mb-3 mx-auto" />
+                                    <p className="text-xs font-bold uppercase mb-6 leading-relaxed">{ui.confirm.msg}</p>
                                     <div className="flex gap-2">
-                                        <button onClick={ui.confirm.fn} className="flex-1 py-4 bg-yellow-500 text-black rounded-xl text-[10px] font-black uppercase transition-all active:scale-95">Yes</button>
-                                        <button onClick={() => setUi({...ui, confirm: null})} className="flex-1 py-4 bg-emerald-900 text-yellow-200 rounded-xl text-[10px] font-black uppercase transition-all active:scale-95">No</button>
+                                        <button onClick={ui.confirm.fn} className="flex-1 py-3 bg-gradient-to-r from-amber-500 to-yellow-400 text-amber-950 rounded-xl text-xs font-bold uppercase">Confirm</button>
+                                        <button onClick={() => setUi({...ui, confirm: null})} className="flex-1 py-3 bg-amber-950 text-amber-300 rounded-xl text-xs font-bold uppercase border border-amber-500/30">Cancel</button>
                                     </div>
                                 </div>
                             )}
 
+                            {/* BUST / RE-ENTRY MODAL */}
                             {ui.bust && (
-                                <div className={`w-full max-sm rounded-[2.5rem] p-8 shadow-2xl border animate-in zoom-in-95 ${isDarkMode ? 'bg-emerald-950 text-white border-white/5' : 'bg-white border-emerald-100 text-slate-900'}`}>
-                                    <div className="text-center mb-8">
-                                        <div className="w-16 h-16 bg-red-500/10 rounded-full flex items-center justify-center mx-auto mb-4 text-red-500">
-                                            {(() => {
-                                                const pIdx = ui.bust.current;
-                                                const safeOpponents = ui.bust.proj.filter((t, idx) => 
-                                                    idx !== pIdx && !inactive.includes(idx) && !ui.bust.idxs.includes(idx)
-                                                );
-                                                const locked = safeOpponents.length > 0 && !safeOpponents.some(t => t < 180);
-                                                return <Icon name={locked ? "lock" : "soccer-ball"} size={32}/>
-                                            })()}
+                                <div className={`w-full max-w-sm rounded-3xl p-6 shadow-2xl border animate-in zoom-in-95 ${isDarkMode ? 'royal-glass-dark text-amber-100' : 'royal-glass-light text-amber-950'}`}>
+                                    <div className="text-center mb-6">
+                                        <div className="w-14 h-14 bg-rose-500/20 border border-rose-500/40 rounded-full flex items-center justify-center mx-auto mb-3 text-rose-400">
+                                            <Icon name="flame" size={28}/>
                                         </div>
-                                        <h3 className="text-2xl font-black uppercase italic mb-4 tracking-tighter leading-none">Red Card! (Bust)</h3>
-                                        <p className="text-[10px] font-bold uppercase opacity-60 px-4 leading-relaxed tracking-tighter text-center">
-                                            {players[ui.bust.current]} passed 200. <br/>
+                                        <h3 className="text-xl font-serif-royal font-black uppercase text-rose-400 mb-2">Score Passed 200!</h3>
+                                        <p className="text-xs font-bold uppercase opacity-80 leading-relaxed">
+                                            {players[ui.bust.current]} has crossed 200 points limit. <br/>
                                             {(() => {
                                                 const pIdx = ui.bust.current;
                                                 const safeOpponents = ui.bust.proj.filter((t, idx) => 
@@ -757,12 +1004,12 @@
                                                 );
                                                 const locked = safeOpponents.length > 0 && !safeOpponents.some(t => t < 180);
                                                 return locked 
-                                                    ? "Stadium Gates are Closed! Leading defense at 180+ prohibits buy-in." 
-                                                    : `Substitute back in for ${ui.bust.target} points?`;
+                                                    ? "Re-entry Closed! Leading players are at 180+ points." 
+                                                    : `Re-enter tournament at ${ui.bust.target} points (High+1)?`;
                                             })()}
                                         </p>
                                     </div>
-                                    <div className="grid grid-cols-2 gap-4">
+                                    <div className="grid grid-cols-2 gap-3">
                                         <button 
                                             onClick={() => solveBust(true)} 
                                             disabled={(() => {
@@ -772,18 +1019,20 @@
                                                 );
                                                 return safeOpponents.length > 0 && !safeOpponents.some(t => t < 180);
                                             })()} 
-                                            className={`py-5 rounded-2xl text-xs font-black uppercase shadow-xl transition-all ${(() => {
+                                            className={`py-4 rounded-xl text-xs font-black uppercase shadow-lg transition-all ${(() => {
                                                 const pIdx = ui.bust.current;
                                                 const safeOpponents = ui.bust.proj.filter((t, idx) => 
                                                     idx !== pIdx && !inactive.includes(idx) && !ui.bust.idxs.includes(idx)
                                                 );
                                                 const locked = safeOpponents.length > 0 && !safeOpponents.some(t => t < 180);
-                                                return locked ? 'bg-slate-800 text-slate-600 opacity-20 shadow-none cursor-not-allowed' : 'bg-yellow-500 text-black btn-active shadow-lg';
+                                                return locked ? 'bg-amber-950/40 text-amber-500/30 border border-amber-500/10 cursor-not-allowed' : 'bg-gradient-to-r from-amber-500 to-yellow-400 text-amber-950 active:scale-95';
                                             })()}`}
                                         >
                                             Buy-In
                                         </button>
-                                        <button onClick={() => solveBust(false)} className="bg-red-600 text-white py-5 rounded-2xl text-xs font-black uppercase btn-active shadow-xl tracking-widest active:scale-95 transition-all">Stay Out</button>
+                                        <button onClick={() => solveBust(false)} className="bg-rose-600/90 hover:bg-rose-600 text-white py-4 rounded-xl text-xs font-black uppercase active:scale-95 transition-all border border-rose-400/30">
+                                            Eliminate
+                                        </button>
                                     </div>
                                 </div>
                             )}
